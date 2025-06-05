@@ -5,13 +5,15 @@ public class ConversorFactory {
     public static HashMap<String, Conversor> conversor = new HashMap<>();
 
         public ConversorFactory(){
-            conversor.put("C to F", new ConversorCelsiusParaFarenheit());
-            conversor.put("C to K", new ConversorCelsiusParaKelvin());
-            conversor.put("F to C", new ConversorFarenheitParaCelsius());
-            conversor.put("F to K", new ConversorFarenheitParaKelvin());
-            conversor.put("K to C", new ConversorKelvinParaCelsius());
-            conversor.put("K to F", new ConversorKelvinParaFarenheit());
-            conversor.put("km to miles", new ConversorKilometrosParaMilhas());
-            conversor.put("miles to km", new ConversorMilhasParaKilometros());
+            conversor.put("KelvinparaCelsius", new ConversorKelvinparaCelsius());
+            conversor.put("KelvinparaFarenheit", new ConversorKelvinparaFarenheit());
+            conversor.put("CelsiusparaKelvin", new ConversorCelsiusparaKelvin());
+            conversor.put("CelsiusparaFarenheit", new ConversorCelsiusparaFarenheit());
+            conversor.put("FarenheitparaCelsius", new ConversorFarenheitparaCelsius());
+            conversor.put("FarenheitparaKelvin", new ConversorFarenheitparaKelvin());
         }
+        public Conversor newConversor(String tipo) {
+            return conversor.get(tipo).clone();
+        }
+        
     }

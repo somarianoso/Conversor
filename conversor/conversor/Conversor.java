@@ -1,12 +1,5 @@
-/**
- * Interface de conversores de temperatura
- */
-public interface Conversor {
-
-    public double converte(double temperatura);
+public abstract class Conversor {
     
-} 
-
-/*public abstract class Conversor {
-    abstract void create(Conversor conversor);
-}*/
+    public abstract Conversor clone();
+    public abstract double converte(double temperatura);
+}
