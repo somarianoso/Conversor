@@ -1,19 +1,22 @@
 import java.util.HashMap;
 
-public class ConversorFactory {
+public class ConversorFactory{
 
-    public static HashMap<String, Conversor> conversor = new HashMap<>();
+    private static HashMap<String, Conversor> conversor = new HashMap<>();
 
-        public ConversorFactory(){
-            conversor.put("KelvinparaCelsius", new ConversorKelvinparaCelsius());
-            conversor.put("KelvinparaFarenheit", new ConversorKelvinparaFarenheit());
-            conversor.put("CelsiusparaKelvin", new ConversorCelsiusparaKelvin());
-            conversor.put("CelsiusparaFarenheit", new ConversorCelsiusparaFarenheit());
-            conversor.put("FarenheitparaCelsius", new ConversorFarenheitparaCelsius());
-            conversor.put("FarenheitparaKelvin", new ConversorFarenheitparaKelvin());
+        static{
+            conversor.put("K to C", ConversorKelvinparaCelsius.getInstance());
+            conversor.put("K to F", ConversorKelvinparaFarenheit.getInstance());
+            conversor.put("C to K", ConversorCelsiusparaKelvin.getInstance());
+            conversor.put("C to F", ConversorCelsiusparaFarenheit.getInstance());
+            conversor.put("F to C", ConversorFarenheitparaCelsius.getInstance());
+            conversor.put("F to K", ConversorFarenheitparaKelvin.getInstance());
+            conversor.put("KM to MI", ConversorKmparaMilhas.getInstance());
+            conversor.put("MI to KM", ConversorMilhasparaKm.getInstance());
+            conversor.put("I to I", ConversorIdentidade.getInstance());
         }
-        public Conversor newConversor(String tipo) {
-            return conversor.get(tipo).clone();
+
+        public static Conversor getConversor(String key) {
+            return conversor.get(key);
         }
-        
     }

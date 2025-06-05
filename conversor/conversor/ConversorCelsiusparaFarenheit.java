@@ -5,9 +5,13 @@ public class ConversorCelsiusparaFarenheit extends Conversor {
     public double converte(double temperatura) {
         return 9*temperatura/5 + 32;
     }
-    @Override
-    public Conversor clone() {
-        return new ConversorCelsiusparaFarenheit();
-    }
-   
+    
+    static private ConversorCelsiusparaFarenheit instance = null;
+    private ConversorCelsiusparaFarenheit() {}
+    static ConversorCelsiusparaFarenheit getInstance() {
+        if (instance == null) {
+            instance = new ConversorCelsiusparaFarenheit();
+        }
+        return instance;
+}
 }

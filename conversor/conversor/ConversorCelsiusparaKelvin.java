@@ -4,9 +4,14 @@ public class ConversorCelsiusparaKelvin extends Conversor {
     public double converte(double temperatura) {
         return temperatura + 273.15;   
     }
-    @Override
-    public Conversor clone() {
-        return new ConversorCelsiusparaKelvin();
+   
+    static private ConversorCelsiusparaKelvin instance = null;
+    private ConversorCelsiusparaKelvin() {}
+    static ConversorCelsiusparaKelvin getInstance() {
+        if (instance == null) {
+            instance = new ConversorCelsiusparaKelvin();
+        }
+        return instance;
     }
 }
 

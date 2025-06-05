@@ -1,26 +1,27 @@
-import java.util.Scanner; 
+import java.util.Scanner;
 
 public class AppConversor {
     public static void main(String[] args) {
-        Conversor conv; // Criaremos um conversor dependento das entradas e saídas.
         Scanner sc = new Scanner(System.in);
-        System.out.print("Digite a unidade da temperatura a ser convertida [F ou C]: ");
-        char unidadeEntrada = sc.next().charAt(0);   
-        System.out.print("Digite para qual unidade da temperatura convertê-la [F ou C]: ");
-        char unidadeSaída = sc.next().charAt(0);   
-        System.out.print("Digite a temperatura de entrada (em " + unidadeEntrada + "): ");
-        double tempEntrada = sc.nextDouble();
+        System.out.print("Digite a unidade a ser convertida [C, F, K, KM, MI, I]: ");
+        String unidadeEntrada = sc.next().toUpperCase();
+
+        System.out.print("Digite para qual unidade convertê-la [C, F, K, KM, MI, I]: ");
+        String unidadeSaida = sc.next().toUpperCase();
+
+        System.out.print("Digite o valor de entrada (em " + unidadeEntrada + "): ");
+        double valorEntrada = sc.nextDouble();
         sc.close();
-        if (unidadeEntrada == unidadeSaída) {
-            conv = new ConversorIdentidade();
-        } else if (unidadeEntrada == 'C' && unidadeSaída == 'F') {
-            conv = new ConversorCelsiusParaFarenheit();
-        } else if (unidadeEntrada == 'F' && unidadeSaída == 'C') {
-            conv = new ConversorFarenheitParaCelsius();
-        } else {
-            throw new UnsupportedOperationException("Unimplemented method 'converte'");
+
+        String chave = unidadeEntrada + " to " + unidadeSaida;
+        Conversor conv = ConversorFactory.getConversor(chave);
+
+        if (conv == null) {
+            System.out.println("Conversão não suportada: " + chave);
+            return;
         }
-        double tempSaída = conv.converte(tempEntrada);
-        System.out.printf("%.2f%c -> %.2f%c\n", tempEntrada, unidadeEntrada, tempSaída, unidadeSaída);
+
+        double valorSaida = conv.converte(valorEntrada);
+        System.out.printf("%.2f%s -> %.2f%s\n", valorEntrada, unidadeEntrada, valorSaida, unidadeSaida);
     }
 }

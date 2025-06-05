@@ -4,8 +4,13 @@ public class ConversorIdentidade extends Conversor {
     public double converte(double temperatura) {
         return temperatura;
     }
-    @Override
-    public Conversor clone() {
-        return null;
-    }
+    
+    static private ConversorIdentidade instance = null;
+    private ConversorIdentidade() {}
+    static ConversorIdentidade getInstance() {
+        if (instance == null) {
+            instance = new ConversorIdentidade();
+        }
+        return instance;
+}
 }
